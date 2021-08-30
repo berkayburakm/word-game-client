@@ -17,7 +17,7 @@ const Game = ({ children }) => {
   });
 
   const getNewQuestion = async () => {
-    const newQuestion = await axios.get(`${API}/new`);
+    const newQuestion = await axios.get(`${process.env.API_STRING || API}/new`);
     try {
       setCurrentQuestion(newQuestion.data.word);
     } catch (err) {
@@ -26,10 +26,13 @@ const Game = ({ children }) => {
   };
   const checkAnswer = async (answer) => {
     setIsLoading(true);
-    const answerResult = await axios.post(`${API}/check`, {
-      answer,
-      word: currentQuestion.question,
-    });
+    const answerResult = await axios.post(
+      `${process.env.API_STRING || API}/check`,
+      {
+        answer,
+        word: currentQuestion.question,
+      }
+    );
     try {
       setResult(answerResult.data.status);
       if (answerResult.data.status) {
