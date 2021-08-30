@@ -10,14 +10,14 @@ const Game = ({ children }) => {
   const [currentQuestion, setCurrentQuestion] = useState();
   const [result, setResult] = useState();
   const [isLoading, setIsLoading] = useState(false);
-  const API = "http://localhost:5000/words";
+  const API = process.env.API_URL || "http://localhost:5000/words";
 
   const [playCorrect] = useSound(correctSfx, {
     volume: 0.5,
   });
 
   const getNewQuestion = async () => {
-    const newQuestion = await axios.get(`${process.env.API_STRING || API}/new`);
+    const newQuestion = await axios.get(`${API}/new`);
     try {
       setCurrentQuestion(newQuestion.data.word);
     } catch (err) {
