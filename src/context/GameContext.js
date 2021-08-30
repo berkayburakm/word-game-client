@@ -10,7 +10,11 @@ const Game = ({ children }) => {
   const [currentQuestion, setCurrentQuestion] = useState();
   const [result, setResult] = useState();
   const [isLoading, setIsLoading] = useState(false);
+<<<<<<< HEAD
   const API = "https://word-game-api.herokuapp.com/words";
+=======
+  const API = process.env.API_URL || "http://localhost:5000/words";
+>>>>>>> 75b576cbb6fe36b5a9e81d0a64a3a684e120ff52
 
   const [playCorrect] = useSound(correctSfx, {
     volume: 0.5,
